@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medica/src/screens/Auth/SignIn/singIn.dart';
+import 'package:medica/src/screens/Auth/SignUp/Widget/Profile.dart';
 
 import '../../../contant/image_String.dart';
 import '../../../contant/text_String.dart';
@@ -56,9 +57,12 @@ class _signUpState extends State<signUp> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  prefixIcon: SvgPicture.asset(
-                    khome,
-                    color: Colors.grey,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: SvgPicture.asset(
+                      kboldmail,
+                      color: Colors.grey,
+                    ),
                   ),
                   hintText: 'Email',
                   hintStyle: GoogleFonts.poppins(color: Colors.grey),
@@ -77,9 +81,12 @@ class _signUpState extends State<signUp> {
                 obscureText: !_isPasswordVisible,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  prefixIcon: SvgPicture.asset(
-                    khome,
-                    color: Colors.grey,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: SvgPicture.asset(
+                      kboldpassword,
+                      color: Colors.grey,
+                    ),
                   ),
                   hintText: 'Password',
                   hintStyle: GoogleFonts.poppins(color: Colors.grey),
@@ -124,17 +131,22 @@ class _signUpState extends State<signUp> {
               ],
             ),
             Spacer(),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              decoration: BoxDecoration(
-                color: Color(0xff2763c0),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Center(
-                child: Text(
-                  "Sign up",
-                  style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => profile_Screen()));
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                  color: Color(0xff2763c0),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Center(
+                  child: Text(
+                    "Sign up",
+                    style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                  ),
                 ),
               ),
             ),

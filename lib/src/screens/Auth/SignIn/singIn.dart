@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medica/src/screens/Auth/SignUp/Signup.dart';
+import 'package:medica/src/utils/HelperClass.dart';
 
 import '../../../contant/image_String.dart';
 import '../../../contant/text_String.dart';
@@ -36,10 +37,10 @@ class _signInState extends State<signIn> {
             Spacer(),
             Center(
                 child: SvgPicture.asset(
-                  kmedicalogo,
-                  color: Color(0xff3375fe),
-                  height: 200,
-                )),
+              kmedicalogo,
+              color: Color(0xff3375fe),
+              height: 200,
+            )),
             Spacer(),
             Center(
               child: Text(
@@ -55,9 +56,12 @@ class _signInState extends State<signIn> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  prefixIcon: SvgPicture.asset(
-                    khome,
-                    color: Colors.grey,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: SvgPicture.asset(
+                      kboldmail,
+                      color: Colors.grey,
+                    ),
                   ),
                   hintText: 'Email',
                   hintStyle: GoogleFonts.poppins(color: Colors.grey),
@@ -76,9 +80,12 @@ class _signInState extends State<signIn> {
                 obscureText: !_isPasswordVisible,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  prefixIcon: SvgPicture.asset(
-                    khome,
-                    color: Colors.grey,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: SvgPicture.asset(
+                      kboldpassword,
+                      color: Colors.grey,
+                    ),
                   ),
                   hintText: 'Password',
                   hintStyle: GoogleFonts.poppins(color: Colors.grey),
@@ -103,7 +110,7 @@ class _signInState extends State<signIn> {
             ),
             Spacer(),
             SizedBox(
-              height: 10,
+              height: 0,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -142,12 +149,48 @@ class _signInState extends State<signIn> {
               height: 10,
             ),
             Center(
-              child: Text(
-                "Forget the password?",
-                style: GoogleFonts.poppins(
-                    color: Color(0xff3375fe),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
+              child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Forget Password",
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w500, fontSize: 20),
+                              ),
+                              addVerticalSpace(20),
+                              Text(
+                                "Select which contact details should we use to reset your password",
+                                style: GoogleFonts.montserrat(
+                                     fontSize: 15),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  "Forget the password?",
+                  style: GoogleFonts.poppins(
+                      color: Color(0xff3375fe),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
             SizedBox(
@@ -162,7 +205,9 @@ class _signInState extends State<signIn> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -171,7 +216,9 @@ class _signInState extends State<signIn> {
                 buildcontainer(kapplelogo),
               ],
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Center(
               child: GestureDetector(
                 onTap: () {
@@ -180,19 +227,19 @@ class _signInState extends State<signIn> {
                 },
                 child: RichText(
                     text: TextSpan(children: [
-                      TextSpan(
-                        text: "Don't have an account? ",
-                        style: GoogleFonts.poppins(color: Colors.grey),
-                      ),
-                      TextSpan(
-                        text: "Sign up",
-                        style: GoogleFonts.poppins(
-                            color: Color(
-                              0xff3375fe,
-                            ),
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ])),
+                  TextSpan(
+                    text: "Don't have an account? ",
+                    style: GoogleFonts.poppins(color: Colors.grey),
+                  ),
+                  TextSpan(
+                    text: "Sign up",
+                    style: GoogleFonts.poppins(
+                        color: Color(
+                          0xff3375fe,
+                        ),
+                        fontWeight: FontWeight.w500),
+                  ),
+                ])),
               ),
             )
           ],
@@ -200,13 +247,17 @@ class _signInState extends State<signIn> {
       ),
     );
   }
-  Widget buildcontainer (String image) {
+
+  Widget buildcontainer(String image) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: Colors.grey, width: 0.5)),
-      child: Image.asset(image, height: 30,),
+      child: Image.asset(
+        image,
+        height: 30,
+      ),
     );
   }
 }
