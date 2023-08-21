@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medica/src/screens/Dashboard_Screen/Dashboard.dart';
 import 'package:medica/src/utils/HelperClass.dart';
 
 import '../../../../Common widgets/buidltextfiled.dart';
@@ -18,8 +19,11 @@ class _profile_ScreenState extends State<profile_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fill Your Profile", style: GoogleFonts.poppins(
-            color: Colors.black, fontWeight: FontWeight.w500),),
+        title: Text(
+          "Fill Your Profile",
+          style: GoogleFonts.poppins(
+              color: Colors.black, fontWeight: FontWeight.w500),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -28,7 +32,6 @@ class _profile_ScreenState extends State<profile_Screen> {
             Spacer(),
             Stack(
               children: [
-
                 CircleAvatar(
                   radius: 90,
                   backgroundColor: Colors.grey[200],
@@ -59,7 +62,8 @@ class _profile_ScreenState extends State<profile_Screen> {
             Spacer(),
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => profile_Screen()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => dashboard()));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -71,7 +75,8 @@ class _profile_ScreenState extends State<profile_Screen> {
                 child: Center(
                   child: Text(
                     "Continue",
-                    style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                    style:
+                        GoogleFonts.poppins(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),
@@ -81,5 +86,4 @@ class _profile_ScreenState extends State<profile_Screen> {
       ),
     );
   }
-
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medica/src/screens/Auth/SignIn/forget%20Password.dart';
 import 'package:medica/src/screens/Auth/SignUp/Signup.dart';
+import 'package:medica/src/screens/Dashboard_Screen/Dashboard.dart';
 import 'package:medica/src/utils/HelperClass.dart';
 
 import '../../../contant/image_String.dart';
@@ -130,17 +132,23 @@ class _signInState extends State<signIn> {
               ],
             ),
             Spacer(),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              decoration: BoxDecoration(
-                color: Color(0xff2763c0),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Center(
-                child: Text(
-                  "Sign in",
-                  style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => dashboard()));
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                  color: Color(0xff2763c0),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Center(
+                  child: Text(
+                    "Sign in",
+                    style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -156,30 +164,10 @@ class _signInState extends State<signIn> {
                     builder: (BuildContext context) {
                       return Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.5,
                         padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Forget Password",
-                                style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w500, fontSize: 20),
-                              ),
-                              addVerticalSpace(20),
-                              Text(
-                                "Select which contact details should we use to reset your password",
-                                style: GoogleFonts.montserrat(
-                                     fontSize: 15),
-                              )
-                            ],
-                          ),
-                        ),
+                        child: ForgetPasswordPage(),
                       );
                     },
                   );
